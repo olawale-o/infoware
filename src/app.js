@@ -1,7 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const routeHandler = require("./route");
-const app = express()
+const handleError = require('./common/error-handler');
+const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
