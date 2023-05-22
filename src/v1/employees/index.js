@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const handler = require('./handler');
-const validate = require('../../common/validate');
+const validate = require('../../common/middlewares/validate');
 const { employeeRequest } = require('./validation');
 
 router.get('/', handler.index);
