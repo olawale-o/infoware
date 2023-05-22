@@ -18,13 +18,31 @@ const config = convict({
     host: {
       doc: 'Database host name',
       format: '*',
-      default: '3307',
+      default: 'localhost',
+    },
+    port: {
+      doc: 'Database port',
+      format: 'port',
+      default: 3307,
     },
     name: {
       doc: 'Database name',
       format: String,
       default: 'infoware',
     },
+    user: {
+      doc: 'Database user',
+      name: {
+        doc: 'Database username',
+        format: String,
+        default: 'root',
+      },
+      password: {
+        doc: 'Database password',
+        format: String,
+        default: '',
+      },
+    }
   },
 });
 
