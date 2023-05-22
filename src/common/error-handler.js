@@ -6,7 +6,7 @@ const handleError = (err, req, res) => {
   }
   
   if (!err.isOperational) {
-    req.log.error('Shutting down the application...');
+    console.error('Shutting down the application...');
     process.exit(1);
     // Shut down the application if it's not an AppError
   }
