@@ -9,4 +9,8 @@ app.use(express.json());
 
 routeHandler(app);
 
+app.use(async (err, req, res, _next) => {
+  await handleError(err, req, res);
+});
+
 module.exports = app;
