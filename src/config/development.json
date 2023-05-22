@@ -1,0 +1,13 @@
+{
+  "env": "development",
+  "port": 5000,
+  "db": {
+    "host": "localhost",
+    "port": 3307,
+    "name": "infoware",
+    "user": {
+      "name": "root",
+      "password": ""
+    }
+  }
+}
