@@ -1,4 +1,5 @@
 const db = require('../../models');
+const AppError =  require('../../common/app-error');
 
 exports.new = async (employee) => {
   const {
@@ -68,7 +69,7 @@ exports.update = async (id, employee) => {
   } = employee;
   const isFound = await db.Employee.findByPk(id);
   if (!isFound) {
-    throw new Error('Employee not found');
+    throw new AppError(404, 'Employee not found');
   }
   return db.Employee.update({
     full_name: fullName,
@@ -108,7 +109,7 @@ exports.update = async (id, employee) => {
 exports.delete = async (id) => {
   const isFound = await db.Employee.findByPk(id);
   if (!isFound) {
-    throw new Error('Employee not found');
+    throw new AppError(404, 'Employee not found');
   }
   return db.Employee.destroy({
     where: {

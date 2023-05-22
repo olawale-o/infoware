@@ -1,10 +1,12 @@
 const router = require('express').Router();
 const handler = require('./handler');
+const validate = require('../../common/validate');
+const { employeeRequest } = require('./validation');
 
 router.get('/', handler.index);
 router.get('/:id', handler.show);
-router.post('/', handler.new);
-router.put('/:id', handler.update);
+router.post('/', validate(employeeRequest), handler.new);
+router.put('/:id', validate(employeeRequest), handler.update);
 router.delete('/:id', handler.delete);
 
 
