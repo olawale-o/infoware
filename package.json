@@ -8,13 +8,13 @@
     "db:drop": "npx sequelize-cli db:drop --env development --config src/config/config.js",
     "db:reset:dev": "npx sequelize-cli db:drop --env development --config src/config/config.js && npx sequelize-cli db:create --env development --config src/config/config.js && npx sequelize-cli db:migrate --env development --config src/config/config.js --migrations-path src/migrations",
     "db:migrate": "npx sequelize-cli db:migrate --env development --config src/config/config.js --migrations-path src/migrations",
-    "pretest": "npm run db:reset",
     "build": "node server.js",
     "start": "nodemon server.js",
+    "pretest": "NODE_ENV=test npm run db:reset",
     "test": "node --experimental-vm-modules node_modules/.bin/jest --coverage",
-    "db:reset": "npx sequelize-cli db:drop --env test --config src/config/config.js && npx sequelize-cli db:create --env test --config src/config/config.js && npx sequelize-cli db:migrate --env test --config src/config/config.js --migrations-path src/migrations",
-    "db:create:test": "npx sequelize-cli db:create --env test --config src/config/config.js",
-    "posttest": "npx sequelize-cli db:drop --env test --config src/config/config.js"
+    "db:reset": "NODE_ENV=test npx sequelize-cli db:drop --env test --config src/config/config.js && npx sequelize-cli db:create --env test --config src/config/config.js && npx sequelize-cli db:migrate --env test --config src/config/config.js --migrations-path src/migrations",
+    "db:create:test": "NODE_ENV=test npx sequelize-cli db:create --env test --config src/config/config.js",
+    "posttest": "NODE_ENV=test npx sequelize-cli db:drop --env test --config src/config/config.js"
   },
   "keywords": [],
   "author": "",
