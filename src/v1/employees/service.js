@@ -1,6 +1,7 @@
 const db = require('../../models');
 const AppError =  require('../../common/app-error');
 
+let total = null;
 exports.new = async (employee) => {
   const {
     fullName,
@@ -38,13 +39,18 @@ exports.new = async (employee) => {
   });
 };
 
-exports.index = async () => {
-  return db.Employee.findAll({
-    include: [{
-      model: db.Contact,
-      as: 'contacts',
-    }],
-  });
+exports.index = async (limit = 5, offset = 0) => {
+  if (total === null) {
+    console.log('total is null');
+    total = await db.Employee.count();
+  }
+  const [results] = await db.sequelize.query(
+    'SELECT * FROM employees LIMIT ? OFFSET ?',
+    {
+      replacements: [limit, offset],
+    }
+  );
+  return [results, total];
 };
 
 exports.show = async (id) => {
