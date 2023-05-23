@@ -12,6 +12,7 @@ module.exports = {
     password: config.get('db.user.password'),
     database: config.get('db.name'),
     host: config.get('db.host'),
-    dialect: "mysql"
+    dialect: "mysql",
+    logging: false
   },
 }
