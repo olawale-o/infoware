@@ -41,7 +41,6 @@ exports.new = async (employee) => {
 
 exports.index = async (limit = 5, offset = 0) => {
   if (total === null) {
-    console.log('total is null');
     total = await db.Employee.count();
   }
   const [results] = await db.sequelize.query(
