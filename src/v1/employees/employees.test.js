@@ -2,7 +2,6 @@ const supertest = require('supertest');
 const app = require('../../app');
 const employees = require('./employee.data');
 
-// console.log(employees[0]);
 let employeeId = null;
 describe('Employees', () => {
   describe('POST /api/v1/employees', () => {
@@ -31,14 +30,14 @@ describe('Employees', () => {
     });
   });
     
-//   describe('GET /api/v1/employees', () => {
-//     it('should return all employees', async () => {
-//       const response = await supertest(app)
-//           .get('/api/v1/employees');
-//       expect(response.statusCode).toBe(200);
-//       expect(response.body.data).toHaveLength(1);
-//     });
-//   });
+  describe('GET /api/v1/employees', () => {
+    it('should return all employees', async () => {
+      const response = await supertest(app)
+          .get(`/api/v1/employees?limit=5&page=1`);
+      expect(response.statusCode).toBe(200);
+      expect(response.body.data).toHaveLength(1);
+    });
+  });
     
   describe('GET /api/v1/employees/:id', () => {
     it('should return an employee', async () => {
