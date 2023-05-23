@@ -33,7 +33,7 @@ describe('Employees', () => {
   describe('GET /api/v1/employees', () => {
     it('should return all employees', async () => {
       const response = await supertest(app)
-          .get(`/api/v1/employees?limit=5&page=1`);
+          .get(`/api/v1/employees?per_page=5&page=1&include=metadata`);
       expect(response.statusCode).toBe(200);
       expect(response.body.data).toHaveLength(1);
     });
