@@ -45,6 +45,28 @@ npm run db:create:test
 npm test
 ```
 
+## Endpoints
+- POST
+```sh
+/api/v1/employees
+```
+- GET
+```sh
+/api/v1/employees?page=1&per_page=5&include=metadata
+```
+- GET
+```sh
+/api/v1/employees/1
+```
+- PUT
+```sh
+/api/v1/employees
+```
+- DELETE
+```sh
+/api/v1/employees
+```
+
 👤 **Omoogun Olawale**
 
 * Github: [@githubhandle](https://github.com/olawale-o)
