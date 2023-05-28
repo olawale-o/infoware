@@ -44,7 +44,9 @@ exports.index = async (limit = 5, offset = 0) => {
     total = await db.Employee.count();
   }
   const [results] = await db.sequelize.query(
-    'SELECT *, CONCAT("/employees/", id) AS url FROM employees LIMIT :limit OFFSET :offset',
+    `SELECT *, CONCAT("/employees/", id) AS url FROM employees
+      INNER JOIN (SELECT id FROM employees ORDER BY createdAt LIMIT :limit OFFSET :offset) AS emp
+      USING (id) ORDER BY createdAt DESC`,
     {
       replacements: {
         limit,
