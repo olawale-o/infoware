@@ -1,9 +1,9 @@
 const config = require('./config.js');
-const db = require("./src/models");
+  db = require("./src/models");
 
-const app = require('./src/app.js');
+  app = require('./src/app.js');
 
-const port = config.get('port') || 6000
+  port = config.get('port') || 6000
 
 db.sequelize.sync()
   .then(() => {
