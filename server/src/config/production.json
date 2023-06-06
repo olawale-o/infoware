@@ -1,0 +1,12 @@
+{
+  "env": "production",
+  "port": 6000,
+  "db": {
+    "host": "127.0.0.1",
+    "name": "infoware",
+    "user": {
+      "name": "root",
+      "password": ""
+    }
+  }
+}
