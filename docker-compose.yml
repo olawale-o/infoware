@@ -1,41 +1,43 @@
 version: '3.8'
 
 services:
-  infoware_db:
+  db:
     container_name: infoware_mysql
-    image: mysql:8.0.33
+    image: "mysql:${MYSQL_VERSION}"
     restart: always
     volumes:
       - ./mysql-data:/var/lib/mysql
     ports:
       - 3307:3306
     networks:
-      - infoware_network
+      - network
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: infoware
-      MYSQL_USER: infoware
-      MYSQL_PASSWORD: infoware
-      MYSQL_ROOT_HOST: '%'
-      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - MYSQL_ROOT_HOST
+      - MYSQL_ALLOW_EMPTY_PASSWORD
+    env_file:
+      - .env
     command: --default-authentication-plugin=mysql_native_password
 
-  infoware_proxy_server:
+  proxy_server:
     container_name: infoware_proxy
     build:
       context: .
       dockerfile: Dockerfile
     restart: unless-stopped
     environment:
-      PROXY_TARGET: 'http://infoware_service:6000'
+      PROXY_TARGET: 'http://api:6000'
     ports:
       - 8000:5000
     networks:
-      - infoware_network
+      - network
     volumes:
       - ./src:/src
 
-  infoware_service:
+  api:
     container_name: infoware
     build:
       context: ./server
@@ -44,9 +46,9 @@ services:
     ports:
       - 8001:6000
     depends_on:
-      - infoware_db
+      - db
     networks:
-      - infoware_network
+      - network
     volumes:
       - ./server:/server
 
@@ -54,4 +56,4 @@ volumes:
   mysql-data:
 
 networks:
-  infoware_network:
+  network:

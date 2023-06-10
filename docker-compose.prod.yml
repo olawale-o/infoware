@@ -1,0 +1,6 @@
+services:
+  api:
+    depends_on:
+      db:
+        condition: service_started
+        restart: true
