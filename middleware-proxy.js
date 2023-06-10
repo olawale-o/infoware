@@ -4,13 +4,13 @@ const filter = function (pathname, req) {
   return pathname.match('^/api/employees');
 }
 const proxyOptions = {
-  target: 'http://localhost:6000',
+  target: process.env.PROXY_TARGET || 'http://localhost:6000',
   changeOrigin: true,
   pathRewrite: {
     '^/api/employees': '/api/v1/employees',
   },
   router: {
-    'localhost:5000': 'http://localhost:6000',
+    'localhost:5000': process.env.PROXY_TARGET || 'http://localhost:6000',
   },
   onError: (err, req, res, target) => {
     console.log("err", err);
