@@ -2,11 +2,12 @@
   "env": "production",
   "port": 6000,
   "db": {
-    "host": "127.0.0.1",
+    "host": "infoware_mysql",
     "name": "infoware",
+    "port": 3306,
     "user": {
-      "name": "root",
-      "password": ""
+      "name": "infoware",
+      "password": "infoware"
     }
   }
 }
